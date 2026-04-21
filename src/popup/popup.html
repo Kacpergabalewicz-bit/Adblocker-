@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Ad Blocker</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header class="hero">
+        <img class="logo" src="../assets/icon-32.png" alt="Real Ad Blocker" />
+        <div>
+          <p class="eyebrow">Real Ad Blocker</p>
+          <h1>Blokowanie reklam</h1>
+        </div>
+      </header>
+
+      <section class="card status-card">
+        <div class="row top-row">
+          <div>
+            <span class="label">Status ochrony</span>
+            <strong id="statusText">Ładowanie...</strong>
+          </div>
+          <label class="switch">
+            <input id="enabledToggle" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="site-box">
+          <span class="label">Aktualna strona</span>
+          <strong id="siteHost">—</strong>
+          <p id="allowlistHint" class="subtle">Sprawdzanie ustawień strony...</p>
+        </div>
+
+        <div class="row toggle-row">
+          <div>
+            <span class="label">Biała lista dla tej strony</span>
+            <p class="subtle">Wyłącza blokowanie reklam tylko tutaj.</p>
+          </div>
+          <label class="switch">
+            <input id="allowlistToggle" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="metrics">
+        <article class="metric-card">
+          <span>Na tej karcie</span>
+          <strong id="tabBlockedCount">0</strong>
+        </article>
+        <article class="metric-card">
+          <span>Łącznie</span>
+          <strong id="totalBlockedCount">0</strong>
+        </article>
+        <article class="metric-card">
+          <span>Własne blokady</span>
+          <strong id="customCount">0</strong>
+        </article>
+        <article class="metric-card">
+          <span>Białe listy</span>
+          <strong id="allowlistCount">0</strong>
+        </article>
+      </section>
+
+      <div class="actions">
+        <button id="openOptions" class="primary">Ustawienia filtrów</button>
+      </div>
+
+      <p id="counterHint" class="hint">Po zmianie ustawienia karta odświeży się automatycznie.</p>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

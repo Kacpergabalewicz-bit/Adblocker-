@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ustawienia — Real Ad Blocker</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero panel">
+        <img class="hero-logo" src="../assets/icon-48.png" alt="Real Ad Blocker" />
+        <div>
+          <p class="eyebrow">Real Ad Blocker</p>
+          <h1>Ustawienia filtrów</h1>
+          <p>Mocniejsze filtry, biała lista stron, liczniki blokad i kosmetyczne ukrywanie reklam.</p>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card panel compact">
+          <span>Łącznie zablokowano</span>
+          <strong id="totalBlockedValue">0</strong>
+        </article>
+        <article class="stat-card panel compact">
+          <span>Własne blokady</span>
+          <strong id="blockedListCount">0</strong>
+        </article>
+        <article class="stat-card panel compact">
+          <span>Strony na białej liście</span>
+          <strong id="allowlistListCount">0</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Własne domeny do blokowania</h2>
+            <p>Przykład: ads.example.com</p>
+          </div>
+          <form id="blockForm" class="domain-form">
+            <input id="blockInput" type="text" placeholder="ads.example.com" autocomplete="off" />
+            <button type="submit">Dodaj</button>
+          </form>
+        </div>
+        <ul id="blockList" class="domain-list"></ul>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Biała lista stron</h2>
+            <p>Te domeny pomijają blokowanie reklam i ukrywanie elementów.</p>
+          </div>
+          <form id="allowForm" class="domain-form">
+            <input id="allowInput" type="text" placeholder="example.com" autocomplete="off" />
+            <button type="submit">Dodaj</button>
+          </form>
+        </div>
+        <ul id="allowList" class="domain-list"></ul>
+      </section>
+
+      <section class="panel compact">
+        <div class="toggle-row">
+          <div>
+            <h2>Ukrywanie elementów reklamowych</h2>
+            <p>Usuwa widoczne boksy reklamowe z DOM po załadowaniu strony.</p>
+          </div>
+          <label class="switch">
+            <input id="cosmeticToggle" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel compact actions-panel">
+        <div>
+          <h2>Liczniki</h2>
+          <p>Resetuje bieżący licznik blokad zapisany dla rozszerzenia.</p>
+        </div>
+        <button id="resetStatsButton" class="danger" type="button">Resetuj licznik</button>
+      </section>
+
+      <div id="feedback" class="feedback"></div>
+    </main>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
