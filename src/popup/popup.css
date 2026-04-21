@@ -112,6 +112,17 @@ body {
   font-size: 1.35rem;
 }
 
+.metric-card small {
+  display: block;
+  margin-top: 4px;
+  color: #94a3b8;
+  font-size: 0.78rem;
+}
+
+.metric-wide {
+  grid-column: span 2;
+}
+
 .switch {
   position: relative;
   width: 54px;

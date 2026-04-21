@@ -1,17 +1,70 @@
 🔥 Mój Ad Blocker (za darmo):
 https://github.com/Kacpergabalewicz-bit/Adblocker-/releases/tag/v1.0.0
 
-📦 Jak zainstalować (Chrome / Edge):
-1) Pobierz ZIP z powyższego linku (Assets)
+📦 INSTALACJA (Chrome / Edge)
+1) Pobierz ZIP z linku powyżej (sekcja Assets)
 2) Rozpakuj folder na komputerze
-3) Otwórz: chrome://extensions/  (lub edge://extensions/)
+3) Otwórz: chrome://extensions/ (lub edge://extensions/)
 4) Włącz: Tryb dewelopera
 5) Kliknij: Załaduj rozpakowane
 6) Wybierz folder rozszerzenia
 
-✅ Gotowe — ad blocker działa.
+✅ Po instalacji przypnij ikonę rozszerzenia obok paska adresu.
 
-⚠️ Uwaga:
-To rozszerzenie jest instalowane ręcznie (nie przez Chrome Web Store), więc aktualizacje robisz ręcznie przez pobranie nowej wersji.
+🚀 SZYBKI START
+1) Wejdź na dowolną stronę
+2) Kliknij ikonę rozszerzenia
+3) Włącz przełącznik „Status ochrony” (ON)
+4) Gotowe — blokowanie działa
+
+🧩 WSZYSTKIE FUNKCJE I JAK JE WŁĄCZYĆ
+
+1) Globalne ON/OFF
+- Gdzie: Popup (kliknij ikonę rozszerzenia)
+- Jak: przełącznik „Status ochrony”
+- Efekt: włącza/wyłącza całe rozszerzenie
+
+2) Biała lista dla aktualnej strony
+- Gdzie: Popup
+- Jak: przełącznik „Biała lista dla tej strony”
+- Efekt: na tej domenie blokowanie jest wyłączone
+
+3) Licznik blokad
+- Gdzie: Popup
+- Co pokazuje:
+	- „Na tej karcie” = blokady na aktualnej karcie
+	- „Łącznie” = wszystkie blokady od startu
+
+4) Własne domeny do blokowania
+- Gdzie: Ustawienia rozszerzenia
+- Jak wejść: ikona rozszerzenia -> „Ustawienia filtrów”
+- Jak dodać: wpisz np. ads.example.com -> „Dodaj”
+
+5) Własna biała lista domen
+- Gdzie: Ustawienia rozszerzenia
+- Jak dodać: wpisz domenę (np. example.com) -> „Dodaj”
+- Efekt: ta domena będzie pomijana przez blokowanie
+
+6) Ukrywanie elementów reklamowych (cosmetic filtering)
+- Gdzie: Ustawienia rozszerzenia
+- Jak: przełącznik „Ukrywanie elementów reklamowych”
+- Efekt: usuwa widoczne boksy reklamowe ze strony
+
+7) Reset licznika
+- Gdzie: Ustawienia rozszerzenia
+- Jak: przycisk „Resetuj licznik”
+
+⚙️ JAK WEJŚĆ W USTAWIENIA
+Opcja 1: ikona rozszerzenia -> przycisk „Ustawienia filtrów”
+Opcja 2: chrome://extensions -> szczegóły rozszerzenia -> Opcje
+
+🔄 AKTUALIZACJA DO NOWEJ WERSJI
+1) Pobierz nową wersję z Releases
+2) Podmień pliki/folder
+3) Wejdź w chrome://extensions
+4) Kliknij „Odśwież” przy rozszerzeniu
+
+⚠️ UWAGA
+To rozszerzenie jest instalowane ręcznie (poza Chrome Web Store), więc aktualizacje robisz ręcznie.
 
 #adblock #chrome #edge #rozszerzenie #youtube #tutorial

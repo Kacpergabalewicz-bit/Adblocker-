@@ -30,6 +30,10 @@
           <span>Strony na białej liście</span>
           <strong id="allowlistListCount">0</strong>
         </article>
+        <article class="stat-card panel compact">
+          <span>Źródła auto‑list</span>
+          <strong id="sourceListCount">0</strong>
+        </article>
       </section>
 
       <section class="panel">
@@ -79,6 +83,48 @@
           <p>Resetuje bieżący licznik blokad zapisany dla rozszerzenia.</p>
         </div>
         <button id="resetStatsButton" class="danger" type="button">Resetuj licznik</button>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Import domen z tekstu / pliku</h2>
+            <p>Wklej reguły (np. ||ads.example.com^) albo zwykłe domeny, po jednej w linii.</p>
+          </div>
+        </div>
+        <textarea id="importTextarea" rows="7" placeholder="||ads.example.com^\nads.other.net\n# komentarz"></textarea>
+        <div class="inline-actions">
+          <input id="importFileInput" type="file" accept=".txt,.list,.conf,.rules" />
+          <button id="importTextButton" type="button">Importuj do blokad</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Źródła list (auto‑update)</h2>
+            <p>Dodaj URL listy tekstowej. Rozszerzenie pobierze domeny i odświeży je automatycznie.</p>
+          </div>
+          <form id="sourceForm" class="domain-form">
+            <input id="sourceInput" type="url" placeholder="https://example.com/adlist.txt" autocomplete="off" />
+            <button type="submit">Dodaj URL</button>
+          </form>
+        </div>
+        <div class="inline-actions">
+          <label class="checkbox-row">
+            <input id="autoSyncToggle" type="checkbox" />
+            <span>Auto‑aktualizacja źródeł (co ~3h)</span>
+          </label>
+          <button id="syncNowButton" type="button">Synchronizuj teraz</button>
+        </div>
+        <p id="lastSyncText" class="small-muted">Ostatnia synchronizacja: brak</p>
+        <ul id="sourceList" class="domain-list"></ul>
+      </section>
+
+      <section class="panel">
+        <h2>Top 5 najczęściej blokowanych domen</h2>
+        <p>Przydatne do sprawdzania co najczęściej łapie filtr.</p>
+        <ul id="topSitesList" class="domain-list"></ul>
       </section>
 
       <div id="feedback" class="feedback"></div>

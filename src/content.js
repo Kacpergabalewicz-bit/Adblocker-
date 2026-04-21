@@ -38,6 +38,7 @@ let enabled = true;
 let cosmeticFiltering = true;
 let allowlistedDomains = [];
 let youtubeInterval;
+let tabPaused = false;
 
 const pageHost = sanitizeDomain(window.location.hostname);
 const isYouTubePage = pageHost === 'youtube.com' || pageHost.endsWith('.youtube.com');
@@ -54,9 +55,19 @@ async function init() {
   enabled = Boolean(state.enabled);
   cosmeticFiltering = Boolean(state.cosmeticFiltering);
   allowlistedDomains = Array.isArray(state.allowlistedDomains) ? state.allowlistedDomains : [];
+  tabPaused = await getTabPausedState();
 
   evaluateFiltering();
 }
+
+chrome.runtime.onMessage.addListener((message) => {
+  if (message?.type !== 'tab-pause-updated') {
+    return;
+  }
+
+  tabPaused = Boolean(message.paused);
+  evaluateFiltering();
+});
 
 chrome.storage.onChanged.addListener((changes, areaName) => {
   if (areaName !== 'local') {
@@ -81,7 +92,7 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
 });
 
 function evaluateFiltering() {
-  const canFilter = enabled && !isHostInList(pageHost, allowlistedDomains);
+  const canFilter = enabled && !tabPaused && !isHostInList(pageHost, allowlistedDomains);
 
   if (canFilter && isYouTubePage) {
     startYouTubeProtection();
@@ -93,6 +104,15 @@ function evaluateFiltering() {
     startFiltering();
   } else {
     stopFiltering();
+  }
+}
+
+async function getTabPausedState() {
+  try {
+    const response = await chrome.runtime.sendMessage({ type: 'is-tab-paused' });
+    return Boolean(response?.paused);
+  } catch {
+    return false;
   }
 }
 

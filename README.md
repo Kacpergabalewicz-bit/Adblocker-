@@ -4,10 +4,13 @@ To gotowe rozszerzenie do Chrome/Edge, które realnie blokuje sporo popularnych 
 
 - statyczne reguły sieciowe `declarativeNetRequest`
 - własna lista domen do blokowania
+- import domen z tekstu/pliku (reguły i domeny)
+- źródła list z auto‑aktualizacją (URL)
 - biała lista stron, dla których blokowanie jest wyłączone
+- pauza blokowania tylko dla bieżącej karty
 - kosmetyczne ukrywanie widocznych boksów reklamowych
 - szybki przełącznik ON/OFF w popupie
-- licznik zablokowanych żądań na karcie i łącznie
+- licznik zablokowanych żądań na karcie, łącznie i per domena
 - własne ikony rozszerzenia i ulepszony panel popup
 
 ## Jak uruchomić
@@ -22,7 +25,10 @@ To gotowe rozszerzenie do Chrome/Edge, które realnie blokuje sporo popularnych 
 
 - Kliknij ikonę rozszerzenia, żeby włączyć albo wyłączyć blokowanie.
 - W popupie możesz dodać aktualną stronę do białej listy.
+- W popupie możesz włączyć pauzę tylko dla aktualnej karty.
 - Otwórz ustawienia, żeby dodać własne domeny reklamowe i własne wyjątki.
+- W ustawieniach możesz importować domeny z tekstu/pliku i dodać URL-e źródeł list.
+- W ustawieniach możesz uruchomić ręczną synchronizację źródeł lub auto‑sync co około 3h.
 - Po zmianie stanu aktywnej karty następuje odświeżenie.
 
 ## Co już blokuje

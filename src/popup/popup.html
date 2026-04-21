@@ -44,6 +44,17 @@
             <span class="slider"></span>
           </label>
         </div>
+
+        <div class="row toggle-row">
+          <div>
+            <span class="label">Pauza tylko na tej karcie</span>
+            <p class="subtle">Tymczasowo wyłącza blokowanie tylko tutaj.</p>
+          </div>
+          <label class="switch">
+            <input id="tabPauseToggle" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </div>
       </section>
 
       <section class="metrics">
@@ -62,6 +73,11 @@
         <article class="metric-card">
           <span>Białe listy</span>
           <strong id="allowlistCount">0</strong>
+        </article>
+        <article class="metric-card metric-wide">
+          <span>Najczęściej blokowana domena</span>
+          <strong id="topSiteHost">brak</strong>
+          <small id="topSiteCount">0 blokad</small>
         </article>
       </section>
 

@@ -10,9 +10,22 @@ const resetStatsButton = document.getElementById('resetStatsButton');
 const totalBlockedValue = document.getElementById('totalBlockedValue');
 const blockedListCount = document.getElementById('blockedListCount');
 const allowlistListCount = document.getElementById('allowlistListCount');
+const sourceListCount = document.getElementById('sourceListCount');
+const importTextarea = document.getElementById('importTextarea');
+const importFileInput = document.getElementById('importFileInput');
+const importTextButton = document.getElementById('importTextButton');
+const sourceForm = document.getElementById('sourceForm');
+const sourceInput = document.getElementById('sourceInput');
+const sourceList = document.getElementById('sourceList');
+const autoSyncToggle = document.getElementById('autoSyncToggle');
+const syncNowButton = document.getElementById('syncNowButton');
+const lastSyncText = document.getElementById('lastSyncText');
+const topSitesList = document.getElementById('topSitesList');
 
 let blockDomains = [];
 let allowlistedDomains = [];
+let sourceUrls = [];
+let topSites = [];
 
 init();
 
@@ -20,9 +33,15 @@ async function init() {
   const state = await chrome.runtime.sendMessage({ type: 'get-state' });
   blockDomains = [...(state.customDomains || [])];
   allowlistedDomains = [...(state.allowlistedDomains || [])];
+  sourceUrls = [...(state.sourceUrls || [])];
+  topSites = [...(state.topSites || [])];
   cosmeticToggle.checked = Boolean(state.cosmeticFiltering);
+  autoSyncToggle.checked = Boolean(state.autoUpdateSources);
+  setLastSyncText(state.lastSourceSyncAt);
   renderStats(state);
   renderDomains();
+  renderSources();
+  renderTopSites();
 }
 
 blockForm.addEventListener('submit', async (event) => {
@@ -79,8 +98,77 @@ cosmeticToggle.addEventListener('change', async () => {
 
 resetStatsButton.addEventListener('click', async () => {
   const state = await chrome.runtime.sendMessage({ type: 'reset-stats' });
+  topSites = [...(state.topSites || [])];
   renderStats(state);
+  renderTopSites();
   setFeedback('Wyzerowano licznik blokad.');
+});
+
+importTextButton.addEventListener('click', async () => {
+  const text = String(importTextarea.value || '').trim();
+  if (!text) {
+    setFeedback('Wklej najpierw domeny lub reguły do importu.');
+    return;
+  }
+
+  const response = await chrome.runtime.sendMessage({
+    type: 'import-domains-text',
+    value: text
+  });
+
+  blockDomains = response.customDomains || [];
+  renderStats(response);
+  renderDomains();
+  importTextarea.value = '';
+  setFeedback('Zaimportowano domeny do listy blokowania.');
+});
+
+importFileInput.addEventListener('change', async () => {
+  const [file] = importFileInput.files || [];
+  if (!file) {
+    return;
+  }
+
+  const text = await file.text();
+  importTextarea.value = text;
+  setFeedback('Plik wczytany. Kliknij „Importuj do blokad”.');
+});
+
+sourceForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const value = String(sourceInput.value || '').trim();
+
+  if (!/^https?:\/\//i.test(value)) {
+    setFeedback('Podaj poprawny URL źródła (http/https).');
+    return;
+  }
+
+  if (sourceUrls.includes(value)) {
+    setFeedback('To źródło już jest dodane.');
+    return;
+  }
+
+  sourceUrls.unshift(value);
+  sourceUrls = sourceUrls.slice(0, 20);
+  await saveSourceUrls();
+  sourceInput.value = '';
+  setFeedback('Dodano nowe źródło listy.');
+});
+
+autoSyncToggle.addEventListener('change', async () => {
+  await chrome.storage.local.set({ autoUpdateSources: autoSyncToggle.checked });
+  setFeedback('Zapisano ustawienie auto‑aktualizacji źródeł.');
+});
+
+syncNowButton.addEventListener('click', async () => {
+  const state = await chrome.runtime.sendMessage({ type: 'sync-source-domains' });
+  sourceUrls = state.sourceUrls || [];
+  topSites = state.topSites || [];
+  renderStats(state);
+  renderSources();
+  renderTopSites();
+  setLastSyncText(state.lastSourceSyncAt);
+  setFeedback('Synchronizacja źródeł zakończona.');
 });
 
 function renderDomains() {
@@ -107,6 +195,18 @@ function renderDomains() {
       setFeedback('Usunięto domenę z białej listy.');
     }
   });
+
+  renderDomainList({
+    element: sourceList,
+    domains: sourceUrls,
+    emptyText: 'Brak źródeł auto‑list. Dodaj pierwszy URL.',
+    description: 'To źródło będzie pobierane i aktualizowane automatycznie.',
+    onRemove: async (url) => {
+      sourceUrls = sourceUrls.filter((entry) => entry !== url);
+      await saveSourceUrls();
+      setFeedback('Usunięto źródło listy.');
+    }
+  });
 }
 
 async function saveBlockDomains() {
@@ -129,6 +229,31 @@ async function saveAllowlistedDomains() {
   allowlistedDomains = response.allowlistedDomains || [];
   renderStats(response);
   renderDomains();
+}
+
+async function saveSourceUrls() {
+  const response = await chrome.runtime.sendMessage({
+    type: 'save-source-urls',
+    value: sourceUrls
+  });
+
+  sourceUrls = response.sourceUrls || [];
+  renderStats(response);
+  renderSources();
+}
+
+function renderSources() {
+  renderDomainList({
+    element: sourceList,
+    domains: sourceUrls,
+    emptyText: 'Brak źródeł auto‑list. Dodaj pierwszy URL.',
+    description: 'To źródło będzie pobierane i aktualizowane automatycznie.',
+    onRemove: async (url) => {
+      sourceUrls = sourceUrls.filter((entry) => entry !== url);
+      await saveSourceUrls();
+      setFeedback('Usunięto źródło listy.');
+    }
+  });
 }
 
 function renderDomainList({ element, domains, emptyText, description, onRemove }) {
@@ -170,6 +295,47 @@ function renderStats(state) {
   totalBlockedValue.textContent = formatCount(state.totalBlocked);
   blockedListCount.textContent = String(state.customDomains?.length || 0);
   allowlistListCount.textContent = String(state.allowlistedDomains?.length || 0);
+  sourceListCount.textContent = String(state.sourceUrls?.length || 0);
+  autoSyncToggle.checked = Boolean(state.autoUpdateSources);
+  setLastSyncText(state.lastSourceSyncAt);
+}
+
+function renderTopSites() {
+  topSitesList.innerHTML = '';
+
+  if (!topSites.length) {
+    const empty = document.createElement('li');
+    empty.className = 'domain-item';
+    empty.textContent = 'Brak danych. Odwiedź kilka stron i wróć tutaj.';
+    topSitesList.append(empty);
+    return;
+  }
+
+  for (const site of topSites.slice(0, 5)) {
+    const item = document.createElement('li');
+    item.className = 'domain-item';
+
+    const host = document.createElement('strong');
+    host.textContent = site.host;
+
+    const count = document.createElement('p');
+    count.textContent = `${formatCount(site.count)} blokad`;
+
+    const info = document.createElement('div');
+    info.append(host, count);
+    item.append(info);
+    topSitesList.append(item);
+  }
+}
+
+function setLastSyncText(value) {
+  if (!value) {
+    lastSyncText.textContent = 'Ostatnia synchronizacja: brak';
+    return;
+  }
+
+  const date = new Date(Number(value));
+  lastSyncText.textContent = `Ostatnia synchronizacja: ${date.toLocaleString('pl-PL')}`;
 }
 
 function setFeedback(message) {
