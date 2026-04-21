@@ -13,13 +13,30 @@ To gotowe rozszerzenie do Chrome/Edge, które realnie blokuje sporo popularnych 
 - licznik zablokowanych żądań na karcie, łącznie i per domena
 - własne ikony rozszerzenia i ulepszony panel popup
 
-## Jak uruchomić
+## Jak zainstalować
 
-1. Otwórz Chrome albo Edge.
+### Opcja A — instalacja z GitHub Releases (dla widzów)
+
+1. Pobierz paczkę ZIP z najnowszego release.
+2. Rozpakuj ZIP do zwykłego folderu na komputerze.
+3. Otwórz `chrome://extensions` (Chrome) lub `edge://extensions` (Edge).
+4. Włącz **Tryb dewelopera**.
+5. Kliknij **Załaduj rozpakowane / Load unpacked**.
+6. Wskaż rozpakowany folder rozszerzenia.
+
+### Opcja B — instalacja z kodu źródłowego (dla dewelopera)
+
+1. Sklonuj repo lub pobierz projekt jako ZIP.
 2. Wejdź na `chrome://extensions` lub `edge://extensions`.
 3. Włącz **Tryb dewelopera**.
-4. Kliknij **Load unpacked / Załaduj rozpakowane**.
-5. Wskaż folder projektu.
+4. Kliknij **Załaduj rozpakowane / Load unpacked**.
+5. Wskaż folder projektu `Ad Blocker`.
+
+### Aktualizacja do nowej wersji
+
+1. Pobierz nową paczkę i podmień pliki w folderze rozszerzenia.
+2. Wejdź na stronę rozszerzeń.
+3. Kliknij **Odśwież** przy `Real Ad Blocker`.
 
 ## Jak używać
 
