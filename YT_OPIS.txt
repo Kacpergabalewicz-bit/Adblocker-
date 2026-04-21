@@ -1,5 +1,5 @@
-🔥 Mój Ad Blocker (za darmo):
-https://github.com/Kacpergabalewicz-bit/Adblocker-/releases/tag/v1.0.0
+🔥 Real Ad Blocker v1.2.0 (za darmo):
+https://github.com/Kacpergabalewicz-bit/Adblocker-/releases/tag/v1.2.0
 
 📦 INSTALACJA (Chrome / Edge)
 1) Pobierz ZIP z linku powyżej (sekcja Assets)
@@ -17,41 +17,65 @@ https://github.com/Kacpergabalewicz-bit/Adblocker-/releases/tag/v1.0.0
 3) Włącz przełącznik „Status ochrony” (ON)
 4) Gotowe — blokowanie działa
 
-🧩 WSZYSTKIE FUNKCJE I JAK JE WŁĄCZYĆ
+🧩 FUNKCJE + JAK ICH UŻYWAĆ
 
 1) Globalne ON/OFF
-- Gdzie: Popup (kliknij ikonę rozszerzenia)
+- Gdzie: Popup (ikona rozszerzenia)
 - Jak: przełącznik „Status ochrony”
 - Efekt: włącza/wyłącza całe rozszerzenie
 
 2) Biała lista dla aktualnej strony
 - Gdzie: Popup
 - Jak: przełącznik „Biała lista dla tej strony”
-- Efekt: na tej domenie blokowanie jest wyłączone
+- Efekt: dla tej domeny blokowanie jest wyłączone
 
-3) Licznik blokad
+3) Pauza tylko dla tej karty
+- Gdzie: Popup
+- Jak: przełącznik „Pauza tylko na tej karcie”
+- Efekt: blokowanie jest pauzowane tylko na aktualnej karcie, inne działają normalnie
+
+4) Liczniki blokad
 - Gdzie: Popup
 - Co pokazuje:
-	- „Na tej karcie” = blokady na aktualnej karcie
-	- „Łącznie” = wszystkie blokady od startu
+	- „Na tej karcie” = blokady na bieżącej karcie
+	- „Łącznie” = wszystkie blokady od uruchomienia
+	- „Najczęściej blokowana domena” = top domena z licznika
 
-4) Własne domeny do blokowania
+5) Własne domeny do blokowania
 - Gdzie: Ustawienia rozszerzenia
 - Jak wejść: ikona rozszerzenia -> „Ustawienia filtrów”
 - Jak dodać: wpisz np. ads.example.com -> „Dodaj”
 
-5) Własna biała lista domen
+6) Własna biała lista domen
 - Gdzie: Ustawienia rozszerzenia
 - Jak dodać: wpisz domenę (np. example.com) -> „Dodaj”
 - Efekt: ta domena będzie pomijana przez blokowanie
 
-6) Ukrywanie elementów reklamowych (cosmetic filtering)
-- Gdzie: Ustawienia rozszerzenia
-- Jak: przełącznik „Ukrywanie elementów reklamowych”
-- Efekt: usuwa widoczne boksy reklamowe ze strony
+7) Import list domen (NOWE)
+- Gdzie: Ustawienia -> „Import domen z tekstu / pliku”
+- Jak:
+	- wklej listę domen/reguł i kliknij „Importuj do blokad”,
+	- albo wybierz plik txt/list i potem kliknij import
+- Obsługa: zwykłe domeny + reguły typu ||example.com^
 
-7) Reset licznika
-- Gdzie: Ustawienia rozszerzenia
+8) Źródła list + auto‑update (NOWE)
+- Gdzie: Ustawienia -> „Źródła list (auto‑update)”
+- Jak:
+	- dodaj URL listy (np. https://.../adlist.txt),
+	- kliknij „Synchronizuj teraz”,
+	- opcjonalnie włącz „Auto‑aktualizacja źródeł (co ~3h)”
+
+9) Top 5 najczęściej blokowanych domen (NOWE)
+- Gdzie: Ustawienia -> „Top 5 najczęściej blokowanych domen”
+- Efekt: pokazuje które domeny były najczęściej blokowane
+
+10) Ukrywanie elementów reklamowych (cosmetic filtering)
+- Gdzie: Ustawienia
+- Jak: przełącznik „Ukrywanie elementów reklamowych”
+- Efekt: usuwa widoczne boksy reklamowe na stronach
+
+11) Reset licznika
+- Gdzie: Ustawienia
 - Jak: przycisk „Resetuj licznik”
 
 ⚙️ JAK WEJŚĆ W USTAWIENIA
@@ -67,4 +91,4 @@ Opcja 2: chrome://extensions -> szczegóły rozszerzenia -> Opcje
 ⚠️ UWAGA
 To rozszerzenie jest instalowane ręcznie (poza Chrome Web Store), więc aktualizacje robisz ręcznie.
 
-#adblock #chrome #edge #rozszerzenie #youtube #tutorial
+#adblock #chrome #edge #rozszerzenie #youtube #tutorial #github
