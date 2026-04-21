@@ -1,0 +1,17 @@
+🔥 Mój Ad Blocker (za darmo):
+https://github.com/Kacpergabalewicz-bit/Adblocker-/releases/tag/v1.0.0
+
+📦 Jak zainstalować (Chrome / Edge):
+1) Pobierz ZIP z powyższego linku (Assets)
+2) Rozpakuj folder na komputerze
+3) Otwórz: chrome://extensions/  (lub edge://extensions/)
+4) Włącz: Tryb dewelopera
+5) Kliknij: Załaduj rozpakowane
+6) Wybierz folder rozszerzenia
+
+✅ Gotowe — ad blocker działa.
+
+⚠️ Uwaga:
+To rozszerzenie jest instalowane ręcznie (nie przez Chrome Web Store), więc aktualizacje robisz ręcznie przez pobranie nowej wersji.
+
+#adblock #chrome #edge #rozszerzenie #youtube #tutorial
